@@ -12,33 +12,29 @@ def load_and_preprocess_data(file_path, selected_columns=None):
     :param selected_columns: List of columns to include (optional).
     :return: Processed DataFrame and NumPy array for causal analysis.
     """
-    # Load dataset
     df = pd.read_csv(file_path)
-    
-    # Convert categorical yes/no to binary
-    df = df.replace({'Yes': 1, 'No': 0})
-    
-    # Drop missing values
+    df = df.replace({'Yes': 1, 'No': 0})  # Convert Yes/No to 1/0
     df = df.dropna()
+    data_encoded = pd.get_dummies(df, drop_first=True, dtype=int)  # One-hot encoding
 
-    # Encode categorical variables
-    data_encoded = pd.get_dummies(df, drop_first=True, dtype=int)
-
-    # Select only specified columns if provided
     if selected_columns:
         data_encoded = data_encoded[selected_columns]
 
     return data_encoded, data_encoded.to_numpy()
 
-def run_pc_algorithm(data_array, alpha=0.05):
+def run_pc_algorithm(data_array, alpha=0.05, method="fisherz"):
     """
-    Runs the PC algorithm on the given dataset.
+    Runs the PC algorithm with the specified independence test method.
 
     :param data_array: NumPy array containing the processed data.
     :param alpha: Significance level for conditional independence tests.
+    :param method: Independence test method ("fisherz" or "chisq").
     :return: Learned causal graph.
     """
-    return pc(data_array, alpha)
+    if method not in ["fisherz", "chisq"]:
+        raise ValueError("Invalid method. Choose 'fisherz' or 'chisq'.")
+    
+    return pc(data_array, alpha, indep_test=method)
 
 def visualize_causal_graph(pc_graph, node_labels):
     """
@@ -53,7 +49,7 @@ def visualize_causal_graph(pc_graph, node_labels):
     # Add edges based on PC adjacency matrix
     for i in range(len(pc_graph.G.graph)):
         for j in range(len(pc_graph.G.graph)):
-            if pc_graph.G.graph[i, j] != 0:  # Edge exists
+            if pc_graph.G.graph[i, j] != 0:
                 if pc_graph.G.graph[j, i] == 1 and pc_graph.G.graph[i, j] == -1:
                     G.add_edge(i, j, edge_type='directed')  # i -> j
                 elif pc_graph.G.graph[j, i] == -1 and pc_graph.G.graph[i, j] == -1:
