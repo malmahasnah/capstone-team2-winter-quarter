@@ -15,12 +15,6 @@ from causallearn.utils.PCUtils.BackgroundKnowledge import BackgroundKnowledge
 from causallearn.utils.PCUtils.BackgroundKnowledgeOrientUtils import \
     orient_by_background_knowledge
 
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import (
-    accuracy_score, precision_score, recall_score, f1_score, roc_auc_score, classification_report
-)
-from sklearn.preprocessing import StandardScaler
 
 depression = pd.read_csv("Student Depression Dataset.csv")
 depression = depression.dropna()
@@ -53,6 +47,7 @@ data_encoded = data_encoded[[
 ]]
 
 data_encoded = data_encoded.astype(int)
+data_encoded = data_encoded.astype(float)
 data_frame = data_encoded.sample(frac=.018)
 
 # Step 1: Convert DataFrame to NumPy array>
