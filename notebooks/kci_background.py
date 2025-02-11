@@ -1,14 +1,14 @@
-#hbrownell-261651
+#hbrownell-1239181
 #This file is to be run on dsmlp servers in the background
+
+#kubectl cp <local-file-path> <pod-name>:<container-path>
 
 import pandas as pd
 import numpy as np
 import networkx as nx
-import matplotlib.pyplot as plt
-import seaborn as sns
 
 import plotly.graph_objects as go
-import us  # Import the us library
+
 
 from causallearn.search.ConstraintBased.PC import pc
 from causallearn.utils.PCUtils.BackgroundKnowledge import BackgroundKnowledge
