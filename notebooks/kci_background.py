@@ -21,30 +21,12 @@ depression = depression.dropna()
 depression = depression.replace({'Yes': 1, 'No': 0})
 
 data_encoded = pd.get_dummies(depression, drop_first=True)
-data_encoded = data_encoded[[
-    'Academic Pressure',
-    'Have you ever had suicidal thoughts ?',
-    'Financial Stress',
-    'City_Bhavna',
-    'City_Kibara',
-    'City_ME',
-    'City_Mira',
-    'City_Nalyan',
-    'City_Nandini',
-    'City_Saanvi',
-    'City_Vaanya',
-    'Profession_Civil Engineer',
-    'Profession_Digital Marketer',
-    'Profession_Doctor',
-    'Profession_Manager',
-    'Profession_Student',
-    'Profession_Teacher',
-    'Dietary Habits_Moderate',
-    'Dietary Habits_Others',
-    'Dietary Habits_Unhealthy',
-    'Degree_Others',
-    'Depression'
-]]
+data_encoded = data_encoded[['Academic Pressure', 'Have you ever had suicidal thoughts ?',
+ 'Financial Stress', 'City_Ahmedabad', 'City_Bhopal', 'City_Faridabad',
+ 'City_Hyderabad', 'City_Meerut', 'City_Patna', 'Dietary Habits_Moderate',
+ 'Dietary Habits_Others', 'Dietary Habits_Unhealthy', 'Depression']]
+
+
 
 data_encoded = data_encoded.astype(int)
 data_encoded = data_encoded.astype(float)
