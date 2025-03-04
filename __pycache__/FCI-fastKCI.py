@@ -57,13 +57,6 @@ data_matrix
 data_matrix.size
 
 # %%
-# PC with KCI
-# cg = pc(data_matrix, indep_test="kci", alpha=0.05)
-
-# plot graph
-# cg.draw_pydot_graph()
-
-# %%
 
 
 # %%
@@ -87,13 +80,6 @@ for i in range(num_nodes):
         if adj_matrix[i, j] != 0:  # If there's an edge
             G.add_edge(variable_names[i], variable_names[j])  # Use column names as labels
 
-# Add edges based on adjacency matrix
-# num_nodes = adj_matrix.shape[0]
-# for i in range(num_nodes):
-#    for j in range(num_nodes):
-#        if adj_matrix[i, j] != 0:  # If there's an edge
-#            G.add_edge(i, j)  # Directed edge from i to j
-
 # Plot the graph
 plt.figure(figsize=(12, 8))
 nx.draw(G, with_labels=True, node_color="lightblue", edge_color="gray", 
@@ -106,8 +92,3 @@ nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels, font_size=8)
 
 plt.title("Causal Graph using Fast KCI")
 plt.show()
-
-# %%
-
-
-
