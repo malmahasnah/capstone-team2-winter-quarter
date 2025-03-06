@@ -13,4 +13,5 @@ To run the FCI with KCI or "fast KCI" algorithm:
 1. Run >pip install -r requirements.txt
 2. Run >python3 FCI-fastKCI.py
 
-**TODO, adjust instructions for (potentially) Fast KCI + normal KCI
+**TODO, adjust instructions for Fast KCI + normal KCI
++also add instructions for the counterfactual computing part.
