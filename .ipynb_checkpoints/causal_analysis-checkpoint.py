@@ -43,7 +43,7 @@ def visualize_causal_graph(pc_graph, node_labels):
     plt.title("Inferred Causal Graph")
     plt.show()
 
-def compute_counterfactuals(file_path, intervention_var):
+def compute_counterfactuals1(file_path, intervention_var):
     df = pd.read_csv(file_path).dropna()
     df = df.replace({'Yes': 1, 'No': 0})
     data_encoded = pd.get_dummies(df, drop_first=True, dtype=int)

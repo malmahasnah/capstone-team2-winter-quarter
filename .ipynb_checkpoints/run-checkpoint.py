@@ -3,7 +3,7 @@ from causal_analysis import load_and_preprocess_data, run_pc_algorithm, visualiz
 
 def main(targets):
     # Predefined file path
-    data_file_path = "data/Student Depression Dataset.csv"
+    data_file_path = "Student Depression Dataset.csv"
 
     # Ensure at least two arguments are provided: mode and a parameter
     if len(targets) != 2:
@@ -50,6 +50,6 @@ def main(targets):
 if __name__ == '__main__':
     # run via:
     #   python run.py graph fisherz
-    #   python run.py counterfactual "Academic Pressure"    
+    #   python run.py counterfactual "Academic Pressure"
     targets = sys.argv[1:]
     main(targets)
