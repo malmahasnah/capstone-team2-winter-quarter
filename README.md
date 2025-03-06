@@ -1,4 +1,4 @@
-# capstone-team2-winter-quarter
+# A Causal Approach to Understanding Student Depression
 
 Source: for LASSO - https://medium.com/@agrawalsam1997/feature-selection-using-lasso-regression-10f49c973f08
 
