@@ -58,7 +58,10 @@ def compute_counterfactuals(file_path, intervention_var):
     observed_data = {}
     print(f"\nPlease enter observed values for the following variables (excluding '{intervention_var}' and 'Depression'):")
     
-    observed_data[intervention_var] = 1
+    if(intervention_var) == "Academic_Pressure":
+        observed_data[intervention_var] = 5
+    else: 
+        observed_data[intervention_var] = 1
     observed_data['Depression'] = 1
     
     for var in selected_columns:
