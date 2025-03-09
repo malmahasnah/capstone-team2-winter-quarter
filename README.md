@@ -7,7 +7,7 @@ To set up the required conda environment,
 2. Run >pip install -r requirements.txt
 3. There are different arguments to be used with run.py to see different parts of our project.
 4. To see graphs, use >python run.py graph <algorithm>, with <algorithm> being fisherz or chisq
-5. To play with our counterfactual computing function, use >python run.py counterfactual <intervention_var>, with the options being "Financial_Stress", "Academic_Pressure", and "Suicidal_Thoughts". It will prompt you to ask for values, the values we used were 5, 5, and 1 respectively.
+5. To play with our counterfactual computing function, use >python run.py counterfactual <intervention_var>, with the options being "Financial_Stress", "Academic_Pressure", and "Suicidal_Thoughts". It will prompt you to ask for the fixed values. The values we used were 5, 5, and 1 respectively.
 
 To run the FCI with KCI or "fast KCI" algorithm:
 1. Run >pip install -r requirements.txt
