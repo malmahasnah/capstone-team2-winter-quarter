@@ -206,7 +206,7 @@ def counterfactual_st(int_num):
 
 
 #for which_sleep, input 1 to test less than 5 hours, 2 for 7-8, 3 for more than 8, 4 for other
-def counterfactual_sd(int_num, which_sleep):
+def counterfactual_sd(which_sleep):
 
     # Construct the Graph, set up the model
     causal_model = gcm.InvertibleStructuralCausalModel(nx.DiGraph([
@@ -253,14 +253,13 @@ def counterfactual_sd(int_num, which_sleep):
     int_4 = 0
     
     if which_sleep == 1:
-        int_1 = int_num
+        int_1 = 1
     elif which_sleep == 2:
-        int_2 = int_num
-    
+        int_2 = 1
     elif which_sleep == 3:
-        int_3 = int_num
+        int_3 = 1
     else:
-        int_4 = int_num
+        int_4 = 1
         
 
     # generate counterfactual samples 
