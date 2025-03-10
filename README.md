@@ -5,10 +5,12 @@ Source: for LASSO - https://medium.com/@agrawalsam1997/feature-selection-using-l
 To set up the required conda environment,
 1. Create a new anaconda environment with >conda create --name `<name>`
 2. Run >pip install -r requirements.txt
-3. There are different arguments to be used with run.py to see different parts of our project.
-4. To see graphs, use >python run.py graph <algorithm>, with <algorithm> being fisherz, chisq, fastkci, or kci
-5. To play with our counterfactual computing function, use >python run.py counterfactual <intervention_var>, with the options being "Financial_Stress", "Academic_Pressure", and "Suicidal_Thoughts". It will prompt you to ask for the fixed values. The values we used were 5, 5, and 1 respectively.
+
+To run counterfactual computing
+1. Run counterfactual.py file
+2. Functions take intervention number
+3. Only for sleep_duration there is a second number which is explained in the py file
 
 To run the FCI with KCI or "fast KCI" algorithm:
 1. Run >pip install -r requirements.txt
-2. Run >python3 FCI-fastKCI.py
+2. Run >python3 fast-kci.py
