@@ -44,12 +44,6 @@ data_encoded = data_encoded[['Academic Pressure', 'Have you ever had suicidal th
 data_encoded = data_encoded.astype(int)
 
 
-# In[5]:
-
-
-data_encoded.shape
-
-
 # In[6]:
 
 
@@ -64,36 +58,11 @@ data_matrix = data_encoded.values
 data_matrix
 
 
-# In[8]:
-
-
-data_matrix.size
-
-
-# In[40]:
-
-
-# PC with KCI
-# cg = pc(data_matrix, indep_test="kci", alpha=0.05)
-
-# plot graph
-# cg.draw_pydot_graph()
-
-
-# In[12]:
-
 
 from causallearn.utils.GraphUtils import GraphUtils
 
 
-# In[ ]:
-
-
-
-
-
 # In[9]:
-
 
 g, edges = fci(data_matrix, independence_test_method='kci')
 
@@ -139,7 +108,6 @@ plt.title("Causal Graph using Fast KCI")
 plt.show()
 
 
-# In[ ]:
 
 
 
