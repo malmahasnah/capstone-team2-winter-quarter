@@ -3,6 +3,8 @@ import numpy as np
 import networkx as nx
 import matplotlib.pyplot as plt
 from causallearn.search.ConstraintBased.PC import pc
+from causallearn.search.ConstraintBased.FCI import fci
+
 from dowhy import gcm
 
 def load_and_preprocess_data(file_path, selected_columns=None):
@@ -21,6 +23,49 @@ def run_pc_algorithm(data_array, alpha=0.05, method="fisherz"):
         raise ValueError("Invalid method. Choose 'fisherz' or 'chisq'.")
     
     return pc(data_array, alpha, indep_test=method)
+
+def run_kci_algorithm(data_encoded, alpha=0.05):
+    data_encoded_float = data_encoded.astype(float)
+    data_frame = data_encoded_float.sample(frac=.018)
+    data_array = data_frame.to_numpy()
+
+    return pc(data_array, alpha, indep_test='kci')
+
+def run_fast_kci(input_data):
+    data_encoded = input_data[:2000]
+    data_encoded = data_encoded.astype(int)
+    data_matrix = data_encoded.values
+    g, edges = fci(data_matrix, independence_test_method='kci')
+    # Convert the causal graph to a networkx graph
+    G = nx.DiGraph()  # Use DiGraph for directed edges
+
+    variable_names = data_encoded.columns.tolist()
+
+    # Get the adjacency matrix from the PC output
+    adj_matrix = g.graph
+
+    num_nodes = adj_matrix.shape[0]
+    for i in range(num_nodes):
+        for j in range(num_nodes):
+            if adj_matrix[i, j] != 0:  # If there's an edge
+                G.add_edge(variable_names[i], variable_names[j])  # Use column names as labels
+
+
+    # Plot the graph
+    plt.figure(figsize=(12, 8))
+    nx.draw(G, with_labels=True, node_color="lightblue", edge_color="gray", 
+            node_size=2000, font_size=7, arrows=True)
+
+    pos = nx.circular_layout(G)
+
+    edge_labels = {(variable_names[i], variable_names[j]): "" for i in range(num_nodes) for j in range(num_nodes) if adj_matrix[i, j] != 0}
+    nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels, font_size=8)
+
+    plt.title("Causal Graph using Fast KCI")
+    plt.show()
+
+
+
 
 def visualize_causal_graph(pc_graph, node_labels):
     G = nx.DiGraph()
