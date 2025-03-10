@@ -5,6 +5,9 @@ Source: for LASSO - https://medium.com/@agrawalsam1997/feature-selection-using-l
 To set up the required conda environment,
 1. Create a new anaconda environment with >conda create --name `<name>`
 2. Run >pip install -r requirements.txt
+3. There are different arguments to be used with run.py to see different parts of our project.
+4. To see graphs, use >python run.py graph <algorithm>, with <algorithm> being fisherz, chisq, fastkci, or kci
+
 
 To run counterfactual computing
 1. Run counterfactual.py file
